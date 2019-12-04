@@ -7,13 +7,15 @@ import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.wang.mytest.apt.annotation.Route;
+import com.wang.mytest.apt.annotation.RouteBean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,7 +29,6 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
@@ -63,28 +64,40 @@ public class RouteProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        mMessager.printMessage(Diagnostic.Kind.NOTE, "process Route start.");
 
-        // 成员变量
-        FieldSpec fieldMap = FieldSpec.builder(ParameterizedTypeName.get(Map.class, String.class, String.class), "mMap", Modifier.PRIVATE, Modifier.STATIC)
-                .build();
+        Map<String, String> options = processingEnv.getOptions();
+        mMessager.printMessage(Diagnostic.Kind.NOTE, "options = " + options);
 
-        // 静态代码块
-        CodeBlock.Builder staticBlockBuilder = CodeBlock.builder()
-                .addStatement("mMap = new $T<>()", HashMap.class);
+        List<RouteBean> routeBeanList = new ArrayList<>();
+
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Route.class);
         mMessager.printMessage(Diagnostic.Kind.NOTE, "size = " + elements.size());
         for (Element element : elements) {
             if (element instanceof TypeElement) {
                 TypeElement typeElement = (TypeElement) element;
-                String name = typeElement.getQualifiedName().toString();
                 Route route = typeElement.getAnnotation(Route.class);
-                String path = route.path();
-                mMessager.printMessage(Diagnostic.Kind.NOTE, "name = " + name);
-                mMessager.printMessage(Diagnostic.Kind.NOTE, "path = " + path);
-
-                staticBlockBuilder.addStatement("mMap.put($S, $S)", path, name);
+                routeBeanList.add(new RouteBean(route.title(), route.path(), typeElement.getQualifiedName().toString()));
             }
+        }
+        if (!routeBeanList.isEmpty()) {
+            generateJavaFile(routeBeanList);
+        }
+        return true;
+    }
+
+    private void generateJavaFile(List<RouteBean> routeBeanList) {
+        mMessager.printMessage(Diagnostic.Kind.NOTE, "process Route start.");
+
+        // 成员变量
+        FieldSpec fieldMap = FieldSpec.builder(ParameterizedTypeName.get(Map.class, String.class, RouteBean.class), "mMap", Modifier.PRIVATE, Modifier.STATIC)
+                .build();
+
+        // 静态代码块
+        CodeBlock.Builder staticBlockBuilder = CodeBlock.builder()
+                .addStatement("mMap = new $T<>()", HashMap.class);
+        for (RouteBean routeBean : routeBeanList) {
+            staticBlockBuilder.addStatement("mMap.put($S, new RouteBean($S, $S, $S))", routeBean.path,
+                    routeBean.title, routeBean.path, routeBean.className);
         }
         CodeBlock staticBlock = staticBlockBuilder.build();
 
@@ -92,12 +105,12 @@ public class RouteProcessor extends AbstractProcessor {
         MethodSpec methodGet = MethodSpec.methodBuilder("get")
                 .addAnnotation(Override.class)
                 .addModifiers(Modifier.PUBLIC)
-                .returns(ParameterizedTypeName.get(Map.class, String.class, String.class))
+                .returns(ParameterizedTypeName.get(Map.class, String.class, RouteBean.class))
                 .addStatement("return mMap")
                 .build();
 
         // 类定义
-        TypeSpec routeProvider = TypeSpec.classBuilder("RouteProvider")
+        TypeSpec routeProvider = TypeSpec.classBuilder("RouteProvider" + System.currentTimeMillis())
                 .addModifiers(Modifier.PUBLIC)
                 .addSuperinterface(ClassName.get("com.wang.mytest.apt.api", "IRouteProvider"))
                 .addField(fieldMap)
@@ -106,7 +119,7 @@ public class RouteProcessor extends AbstractProcessor {
                 .build();
 
         // Java 文件
-        JavaFile javaFile = JavaFile.builder("com.wang.mytest.route", routeProvider)
+        JavaFile javaFile = JavaFile.builder("com.wang.mytest", routeProvider)
                 .build();
 
         try {
@@ -115,6 +128,5 @@ public class RouteProcessor extends AbstractProcessor {
         }
 
         mMessager.printMessage(Diagnostic.Kind.NOTE, "process Route end.");
-        return true;
     }
 }

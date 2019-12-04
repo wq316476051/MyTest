@@ -1,4 +1,13 @@
-include ':app', ':feature_view'
+include ':app', ':big_screen'
+
+include  ':feature_ui'
+include  ':feature_audio'
+include  ':feature_storage'
+include  ':feature_sensor'
+
+include ':lib_common'
+include ':lib_java'
+include ':lib_viewlinker'
 
 include ':route_annotation'
 include ':route_compiler'
