@@ -36,6 +36,7 @@ dependencies {
     implementation project(":lib_viewlinker")
 
     implementation rootProject.ext.dependencies.appcompat
+    implementation rootProject.ext.dependencies.constraintlayout
     implementation rootProject.ext.dependencies.cardview
 
     implementation rootProject.ext.dependencies.lifecycle_viewmodel_ktx

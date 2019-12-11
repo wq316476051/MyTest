@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CardLayout">
+        <attr name="mode" format="integer">
+            <enum name="left_only" value="1" />
+            <enum name="right_only" value="2" />
+            <enum name="left_right" value="3" />
+        </attr>
+        <attr name="interval" format="dimension" />
+        <attr name="intervalColor" format="color" />
+    </declare-styleable>
+
+
+</resources>

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wang.mytest.R;
+import com.wang.mytest.feature.ui.layout.CardLayout;
 import com.wang.mytest.library.common.ToastUtils;
 
 import java.lang.annotation.Retention;
@@ -47,6 +48,12 @@ public class LeftFragment extends Fragment {
     private TestViewModel mViewModel;
     private MenuHolder mMenuHolder;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mViewModel = ViewModelProviders.of(getActivity()).get(TestViewModel.class);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,8 +65,6 @@ public class LeftFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mToolbar = view.findViewById(R.id.toolbar);
         mRecyclerView = view.findViewById(R.id.recycler_view);
-
-        mViewModel = ViewModelProviders.of(getActivity()).get(TestViewModel.class);
 
         mToolbar.setTitle("Left");
         mToolbar.inflateMenu(R.menu.left);
@@ -136,7 +141,9 @@ public class LeftFragment extends Fragment {
         @NonNull
         @Override
         public LeftViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new LeftViewHolder(new TextView(parent.getContext()));
+            TextView textView = new TextView(parent.getContext());
+            textView.setTextSize(45);
+            return new LeftViewHolder(textView);
         }
 
         @Override

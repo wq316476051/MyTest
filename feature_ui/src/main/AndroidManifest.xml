@@ -19,6 +19,10 @@
         <activity android:name=".view.DrawRecordActivity" />
         <activity android:name=".view.ViewActivity" />
         <activity android:name=".fragment.FragmentAlertDialogSupport" />
+        <activity android:name=".layout.CardLayoutActivity" />
+        <activity android:name=".layout.CoordinateLayoutActivity" />
+        <activity android:name=".layout.ConstraintLayoutActivity" />
+        <activity android:name=".layout.ConstraintLayoutActivity2" />
     </application>
 
 </manifest>

@@ -3,6 +3,8 @@ package com.wang.mytest.test;
 import android.app.Application;
 import android.os.Looper;
 
+import com.wang.mytest.feature.ui.layout.CardLayout;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -15,8 +17,19 @@ public class TestViewModel extends AndroidViewModel {
 
     private MutableLiveData<Boolean> mNavigation = new MutableLiveData<>();
 
+    private MutableLiveData<Integer> mUiMode = new MutableLiveData<>();
+
     public TestViewModel(@NonNull Application application) {
         super(application);
+    }
+
+    @NonNull
+    public LiveData<Integer> getUiMode() {
+        return mUiMode;
+    }
+
+    public void setUiMode(int uiMode) {
+        mUiMode.postValue(uiMode);
     }
 
     public void chooseItem(TestBean testBean) {

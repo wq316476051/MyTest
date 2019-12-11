@@ -2,21 +2,20 @@ package com.wang.mytest.test;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 
 import com.wang.mytest.R;
 import com.wang.mytest.apt.annotation.Route;
+import com.wang.mytest.feature.ui.layout.CardLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.DialogTitle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import kotlin.Unit;
 
 @Route(path = "/activity/app/dual_fragment", title = "dualFragment")
 public class DualFragmentActivity extends AppCompatActivity {
@@ -25,101 +24,123 @@ public class DualFragmentActivity extends AppCompatActivity {
 
     private static final String LEFT = "left";
     private static final String RIGHT = "right";
+    private CardLayout mCardLayout;
+    private TestViewModel mViewModel;
+
     private View mLeftContainer;
     private View mRightContainer;
+
+    private Fragment mLeftFragment;
+    private Fragment mRightFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
         setContentView(R.layout.activity_dual_fragment);
+        mCardLayout = findViewById(R.id.card_layout);
         mLeftContainer = findViewById(R.id.left_container);
         mRightContainer = findViewById(R.id.right_container);
 
-        int densityDpi = getResources().getConfiguration().densityDpi;
-        int screenHeightDp = getResources().getConfiguration().screenHeightDp;
-        int screenWidthDp = getResources().getConfiguration().screenWidthDp;
-        Log.d(TAG, "onCreate: densityDpi = " + densityDpi);
-        Log.d(TAG, "onCreate: screenWidthDp = " + screenWidthDp);
-        Log.d(TAG, "onCreate: screenHeightDp = " + screenHeightDp);
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment leftFragment = fragmentManager.findFragmentByTag(LEFT);
-        Fragment rightFragment = fragmentManager.findFragmentByTag(RIGHT);
+        mLeftFragment = fragmentManager.findFragmentByTag(LEFT);
+        mRightFragment = fragmentManager.findFragmentByTag(RIGHT);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (leftFragment == null) {
-            transaction.replace(R.id.left_container, new LeftFragment(), LEFT);
+        if (mLeftFragment == null) {
+            mLeftFragment = new LeftFragment();
+            transaction.replace(R.id.left_container, mLeftFragment, LEFT);
         }
-        if (rightFragment == null && mRightContainer != null) {
-            transaction.replace(R.id.right_container, new RightFragment(), RIGHT);
+        if (mRightFragment == null) {
+            mRightFragment = new RightFragment();
+            transaction.replace(R.id.right_container, mRightFragment, RIGHT);
         }
         transaction.commit();
 
-//        updateOrientation(getResources().getConfiguration());
+        mViewModel = ViewModelProviders.of(this).get(TestViewModel.class);
+        if (mViewModel.getUiMode().getValue() == null) {
+            int initUiMode = getInitUiMode();
+            mViewModel.setUiMode(initUiMode);
+        }
+        mViewModel.getTestBeanLiveData().observe(this, testBean -> {
+            if (testBean == null) {
+                return;
+            }
+            Log.d(TAG, "onCreate: getUiMode = " + mViewModel.getUiMode().getValue());
+            if (mViewModel.getUiMode().getValue() == CardLayout.LEFT_ONLY) {
+                mViewModel.setUiMode(CardLayout.RIGHT_ONLY);
+            }
+        });
+        mViewModel.getUiMode().observe(this, uiMode -> {
+            if (uiMode == null) {
+                return;
+            }
+            mCardLayout.setDisplayMode(uiMode);
 
-//        TestViewModel viewModel = ViewModelProviders.of(this).get(TestViewModel.class);
-//        viewModel.getTestBeanLiveData().observeForever(this::onItemChanged);
-//        viewModel.getNavigationLiveDate().observeForever(aBoolean -> {
-//            if (aBoolean) {
-//                mLeftContainer.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels;
-//                mLeftContainer.setLayoutParams(mLeftContainer.getLayoutParams());
+            float translationX = mRightContainer.getTranslationX();
+            Log.d(TAG, "onCreate: translationX = " + translationX);
+//            if (uiMode == CardLayout.LEFT_ONLY) {
+//                mCardLayout.setRightAnimateStartListener(() -> {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .show(mLeftFragment)
+//                            .commitAllowingStateLoss();
+//                    return Unit.INSTANCE;
+//                });
+//                mCardLayout.setRightAnimateEndListener(() -> {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .hide(mRightFragment)
+//                            .commitAllowingStateLoss();
+//                    return Unit.INSTANCE;
+//                });
+//            } else if (uiMode == CardLayout.RIGHT_ONLY) {
+//                mCardLayout.setRightAnimateStartListener(() -> {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .show(mRightFragment)
+//                            .commitAllowingStateLoss();
+//                    return Unit.INSTANCE;
+//                });
 //
-//                if (mRightContainer != null) {
-//                    mRightContainer.getLayoutParams().width = 0;
-//                    mRightContainer.setLayoutParams(mRightContainer.getLayoutParams());
-//                }
+//                mCardLayout.setRightAnimateEndListener(() -> {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .hide(mLeftFragment)
+//                            .commitAllowingStateLoss();
+//                    return Unit.INSTANCE;
+//                });
+//            } else if (uiMode == CardLayout.LEFT_RIGHT) {
+//                getSupportFragmentManager().beginTransaction()
+//                        .show(mLeftFragment)
+//                        .show(mRightFragment)
+//                        .commitAllowingStateLoss();
 //            }
-//        });
+        });
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Log.d(TAG, "onConfigurationChanged: " + newConfig);
-        int width = mLeftContainer.getWidth();
-        Log.d(TAG, "onConfigurationChanged: width = " + width);
-//        updateOrientation(newConfig);
-        mLeftContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int width = mLeftContainer.getWidth();
-                Log.d(TAG, "onGlobalLayout: width = " + width);
-                mLeftContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            }
-        });
-    }
 
-    private void updateOrientation(Configuration newConfig) {
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            mLeftContainer.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels;
-            mLeftContainer.setLayoutParams(mLeftContainer.getLayoutParams());
-
-            if (mRightContainer != null) {
-                mRightContainer.getLayoutParams().width = 0;
-                mRightContainer.setLayoutParams(mRightContainer.getLayoutParams());
-            }
-        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mLeftContainer.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels / 3;
-            mLeftContainer.setLayoutParams(mLeftContainer.getLayoutParams());
-
-            if (mRightContainer != null) {
-                mRightContainer.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels * 2 / 3;
-                mRightContainer.setLayoutParams(mRightContainer.getLayoutParams());
-            }
-        } else {
-            Log.d(TAG, "updateOrientation: do nothing.");
+        Integer lastUiMode = mViewModel.getUiMode().getValue();
+        boolean bigScreen = getResources().getConfiguration().screenWidthDp > 600
+                && getResources().getConfiguration().screenHeightDp > 600;
+        if (bigScreen && lastUiMode != CardLayout.LEFT_RIGHT) {
+            mViewModel.setUiMode(CardLayout.LEFT_RIGHT);
+        } else if (!bigScreen && lastUiMode == CardLayout.LEFT_RIGHT) {
+            mViewModel.setUiMode(CardLayout.RIGHT_ONLY);
         }
     }
 
-    private void onItemChanged(TestBean testBean) {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            mLeftContainer.getLayoutParams().width = 0;
-            mLeftContainer.setLayoutParams(mLeftContainer.getLayoutParams());
-
-            if (mRightContainer != null) {
-                mRightContainer.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels;
-                mRightContainer.setLayoutParams(mRightContainer.getLayoutParams());
-            }
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed: getUiMode = " + mViewModel.getUiMode().getValue());
+        if (mViewModel.getUiMode().getValue() == CardLayout.RIGHT_ONLY) {
+            mViewModel.setUiMode(CardLayout.LEFT_ONLY);
+            return;
         }
+        super.onBackPressed();
+    }
+
+    private int getInitUiMode() {
+        return getResources().getConfiguration().screenWidthDp > 600
+                ? CardLayout.LEFT_RIGHT
+                : CardLayout.LEFT_ONLY;
     }
 }
