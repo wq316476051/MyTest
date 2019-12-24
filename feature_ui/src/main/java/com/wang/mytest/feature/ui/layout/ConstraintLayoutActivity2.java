@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import kotlinx.coroutines.GlobalScope;
 
 @Route(path = "/activity/ui/layout/constraint2", title = "ConstraintLayout2")
 public class ConstraintLayoutActivity2 extends AppCompatActivity {

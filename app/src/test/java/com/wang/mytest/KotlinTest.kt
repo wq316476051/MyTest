@@ -1,5 +1,7 @@
 package com.wang.mytest
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.junit.Test
 
 class KotlinTest {
@@ -16,6 +18,13 @@ class KotlinTest {
             else -> {
                 println("else")
             }
+        }
+    }
+
+    @Test
+    fun test2() {
+        GlobalScope.launch {
+
         }
     }
 }

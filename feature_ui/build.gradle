@@ -40,7 +40,7 @@ dependencies {
     implementation rootProject.ext.dependencies.cardview
 
     implementation rootProject.ext.dependencies.lifecycle_viewmodel_ktx
-    implementation rootProject.ext.dependencies.kotlin_stdlib
+    implementation rootProject.ext.dependencies.kotlin_stdlib_jdk8
 
     testImplementation rootProject.ext.dependencies.junit
 
