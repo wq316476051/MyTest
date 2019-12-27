@@ -17,7 +17,7 @@ class LifecycleFragment : Fragment() {
         const val TAG = "LifecycleFragment"
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d(TAG, "onAttach: ");
     }
@@ -27,7 +27,7 @@ class LifecycleFragment : Fragment() {
         Log.d(TAG, "onDetach: ");
     }
 
-    override fun onAttachFragment(childFragment: Fragment?) {
+    override fun onAttachFragment(childFragment: Fragment) {
         super.onAttachFragment(childFragment)
         Log.d(TAG, "onAttachFragment: ");
     }
@@ -100,22 +100,22 @@ class LifecycleFragment : Fragment() {
         Log.d(TAG, "onRequestPermissionsResult: ");
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         Log.d(TAG, "onConfigurationChanged: ");
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         Log.d(TAG, "onCreateOptionsMenu: ");
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?) {
+    override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         Log.d(TAG, "onPrepareOptionsMenu: ");
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected: ");
         return super.onOptionsItemSelected(item)
     }

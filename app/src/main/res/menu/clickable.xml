@@ -8,4 +8,12 @@
     <item
         android:id="@+id/options_unclickable"
         android:title="Unclickable" />
+
+    <item
+        android:id="@+id/options_screen_details"
+        android:title="Screen Details" />
+
+    <item
+        android:id="@+id/options_viewpager2"
+        android:title="View Pager 2" />
 </menu>

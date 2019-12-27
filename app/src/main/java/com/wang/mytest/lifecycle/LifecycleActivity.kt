@@ -163,7 +163,7 @@ class LifecycleActivity : AppCompatActivity() {
         lifecycle.removeObserver(mViewModel)
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.d(TAG, "onSaveInstanceState: ");
     }
@@ -207,7 +207,7 @@ class LifecycleActivity : AppCompatActivity() {
         Log.d(TAG, "onBackPressed: ");
     }
 
-    override fun onAttachFragment(fragment: Fragment?) {
+    override fun onAttachFragment(fragment: Fragment) {
         super.onAttachFragment(fragment)
         Log.d(TAG, "onAttachFragment: ");
     }

@@ -1,8 +1,6 @@
 package com.wang.mytest;
 
 import android.app.ActivityManager;
-import android.content.pm.FeatureInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;

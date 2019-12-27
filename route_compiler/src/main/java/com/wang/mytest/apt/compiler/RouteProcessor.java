@@ -45,6 +45,7 @@ public class RouteProcessor extends AbstractProcessor {
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
         mMessager = processingEnvironment.getMessager();
+        mMessager.printMessage(Diagnostic.Kind.NOTE, "init");
         mFiler = processingEnvironment.getFiler();
         mElementUtils = processingEnvironment.getElementUtils();
         mTypeUtils = processingEnvironment.getTypeUtils();

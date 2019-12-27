@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -34,21 +35,22 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":route_annotation")
+    implementation project(":route_api")
+//    annotationProcessor project(":route_compiler")
+    kapt project(":route_compiler")
+
     implementation project(":feature_ui")
     implementation project(":feature_audio")
     implementation project(":feature_storage")
     implementation project(":feature_sensor")
     implementation project(":big_screen")
 
-    implementation project(":route_annotation")
-    implementation project(":route_api")
-
-    annotationProcessor project(":route_compiler")
-
     implementation project(":lib_common")
     implementation project(":lib_viewlinker")
 
     implementation rootProject.ext.dependencies.appcompat
+    implementation rootProject.ext.dependencies.viewpager2
     implementation rootProject.ext.dependencies.constraintlayout
     implementation rootProject.ext.dependencies.recyclerview
     implementation rootProject.ext.dependencies.lifecycle_common_java8

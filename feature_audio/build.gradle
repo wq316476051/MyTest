@@ -33,12 +33,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    
-    implementation project(":lib_common")
 
     implementation project(":route_annotation")
     implementation project(":route_api")
     annotationProcessor project(":route_compiler")
+
+    implementation project(":lib_common")
 
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.recyclerview

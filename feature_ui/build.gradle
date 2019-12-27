@@ -32,6 +32,7 @@ dependencies {
     implementation project(":route_annotation")
     implementation project(":route_api")
     annotationProcessor project(":route_compiler")
+
     implementation project(":lib_common")
     implementation project(":lib_viewlinker")
 

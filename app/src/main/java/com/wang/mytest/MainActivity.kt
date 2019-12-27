@@ -49,6 +49,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menu?.let {
+            menuInflater.inflate(R.menu.clickable, it)
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.options_clickable -> {
@@ -57,6 +64,14 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.options_unclickable -> {
                 mClickable.compareAndSet(true, false)
+                true
+            }
+            R.id.options_screen_details -> {
+                startActivity(Intent(this, ScreenActivity::class.java))
+                true
+            }
+            R.id.options_viewpager2 -> {
+                startActivity(Intent(this, ViewPager2Activity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item);
