@@ -24,6 +24,7 @@
         <activity android:name=".layout.ConstraintLayoutActivity" />
         <activity android:name=".layout.ConstraintLayoutActivity2" />
         <activity android:name=".layout.ViewPager2Activity" />
+        <activity android:name=".recycler_view.RecyclerViewActivity" />
     </application>
 
 </manifest>

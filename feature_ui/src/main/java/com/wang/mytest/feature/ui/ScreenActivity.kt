@@ -1,14 +1,12 @@
-package com.wang.mytest
+package com.wang.mytest.feature.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import android.util.TypedValue
 import android.view.Window
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.jetbrains.anko.displayMetrics
 
 class ScreenActivity : AppCompatActivity() {
 

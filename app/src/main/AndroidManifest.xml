@@ -30,8 +30,9 @@
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"/>
 
         <activity android:name=".lifecycle.LifecycleActivity" />
-        <activity android:name=".ScreenActivity" />
-        <activity android:name=".ViewPager2Activity" />
+        <activity android:name=".feature.ui.ScreenActivity" />
+        <activity android:name=".feature.ui.view_pager2.ViewPager2Activity" />
+        <activity android:name=".TestKotlinActivity" />
 
         <service android:name=".lifecycle.LifecycleService" />
     </application>

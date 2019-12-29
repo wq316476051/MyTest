@@ -88,6 +88,7 @@ public class RouteProcessor extends AbstractProcessor {
 
     private void generateJavaFile(List<RouteBean> routeBeanList) {
         mMessager.printMessage(Diagnostic.Kind.NOTE, "process Route start.");
+        mMessager.printMessage(Diagnostic.Kind.WARNING, "process Route start." + routeBeanList);
 
         // 成员变量
         FieldSpec fieldMap = FieldSpec.builder(ParameterizedTypeName.get(Map.class, String.class, RouteBean.class), "mMap", Modifier.PRIVATE, Modifier.STATIC)

@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wang.mytest.apt.annotation.RouteBean
 import com.wang.mytest.apt.api.RouteStore
+import com.wang.mytest.feature.ui.ScreenActivity
+import com.wang.mytest.feature.ui.view_pager2.ViewPager2Activity
 import com.wang.mytest.lifecycle.LifecycleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_1.view.*
