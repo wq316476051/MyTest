@@ -25,6 +25,7 @@
         <activity android:name=".layout.ConstraintLayoutActivity2" />
         <activity android:name=".layout.ViewPager2Activity" />
         <activity android:name=".recycler_view.RecyclerViewActivity" />
+        <activity android:name=".search_view.SearchViewActivity" />
     </application>
 
 </manifest>

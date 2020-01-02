@@ -36,7 +36,7 @@ class ScreenActivity : AppCompatActivity() {
 
     private fun printScreenDetails() {
         val metric = DisplayMetrics()
-        windowManager.defaultDisplay.getRealMetrics(metric)
+        windowManager.defaultDisplay.getRealMetrics(metric) // 整个屏幕参数
 
         val details = """
             density: ${metric.density}
