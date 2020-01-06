@@ -36,6 +36,7 @@ buildscript {
                 lifecycle_viewmodel       : "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version", // alternatively - just ViewModel
                 lifecycle_livedata        : "androidx.lifecycle:lifecycle-livedata:$lifecycle_version", // alternatively - just LiveData
                 lifecycle_common_java8    : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+                lifecycle_runtime_ktx    : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
                 // optional - ReactiveStreams support for LiveData
                 lifecycle_reactivestreams : "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
 

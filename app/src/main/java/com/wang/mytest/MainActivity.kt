@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.wang.mytest.feature.ui.view_pager2.ViewPager2Activity
 import com.wang.mytest.lifecycle.LifecycleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_1.view.*
+import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : AppCompatActivity() {
@@ -47,6 +49,22 @@ class MainActivity : AppCompatActivity() {
 
         btn_test.setOnClickListener {
             startActivity(Intent().setClass(this, LifecycleActivity::class.java))
+        }
+
+        lifecycleScope.launch {
+
+        }
+
+        lifecycleScope.launchWhenCreated {
+
+        }
+
+        lifecycleScope.launchWhenStarted {
+
+        }
+
+        lifecycleScope.launchWhenResumed {
+
         }
     }
 
