@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,22 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         btn_test.setOnClickListener {
             startActivity(Intent().setClass(this, LifecycleActivity::class.java))
-        }
-
-        lifecycleScope.launch {
-
-        }
-
-        lifecycleScope.launchWhenCreated {
-
-        }
-
-        lifecycleScope.launchWhenStarted {
-
-        }
-
-        lifecycleScope.launchWhenResumed {
-
         }
     }
 
