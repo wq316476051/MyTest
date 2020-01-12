@@ -31,7 +31,6 @@ open class UpgradeFrom1To2 : UpgradeFrom0To1() {
                 Label.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 Label.FILE_PATH to TEXT,
                 Label.CONTENT to TEXT,
-                Label.START_TIME to INTEGER,
-                Label.END_TIME to INTEGER)
+                Label.TIME to INTEGER)
     }
 }

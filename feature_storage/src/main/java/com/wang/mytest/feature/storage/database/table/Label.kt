@@ -6,6 +6,5 @@ object Label {
     const val ID = "_ID"
     const val FILE_PATH = "file_path"
     const val CONTENT = "duration"
-    const val START_TIME = "start_time"
-    const val END_TIME = "end_time"
+    const val TIME = "time"
 }
