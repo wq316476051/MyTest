@@ -1,7 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wang.mytest.feature.storage" >
+    package="com.wang.mytest.feature.storage">
 
     <application>
         <activity android:name=".database.DatabaseActivity" />
+
+        <provider
+            android:name=".database.MyContentProvider"
+            android:authorities="com.wang.mytest.feature.storage"
+            android:exported="false" />
     </application>
 </manifest>

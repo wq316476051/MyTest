@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.wang.mytest.feature.storage.hasStoragePermission
-import com.wang.mytest.feature.storage.requestStoragePermission
+import com.wang.mytest.library.common.hasStoragePermission
+import com.wang.mytest.library.common.requestStoragePermission
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
