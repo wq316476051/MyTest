@@ -1,31 +1,38 @@
 package com.wang.mytest.network
 
 import android.net.*
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.wang.mytest.library.common.AppUtils
 
 object NetworkStateLiveData : LiveData<Boolean>() {
 
+    private const val TAG = "NetworkStateLiveData"
+
     private val networkCallback = object : ConnectivityManager.NetworkCallback() {
         override fun onCapabilitiesChanged(network: Network?, networkCapabilities: NetworkCapabilities?) {
             super.onCapabilitiesChanged(network, networkCapabilities)
+            Log.d(TAG, "onCapabilitiesChanged: ")
             checkAndPost(hasValidatedCapabilities(networkCapabilities))
         }
 
         override fun onLost(network: Network?) {
             super.onLost(network)
+            Log.d(TAG, "onLost: ")
             checkAndPost(isConnected())
         }
     }
 
     override fun onActive() {
         super.onActive()
+        Log.d(TAG, "onActive: ")
         // 在子线程中回调
         getConnectivityManager()?.registerNetworkCallback(NetworkRequest.Builder().build(), networkCallback)
     }
 
     override fun onInactive() {
         super.onInactive()
+        Log.d(TAG, "onInactive: ")
         getConnectivityManager()?.unregisterNetworkCallback(networkCallback)
     }
 
