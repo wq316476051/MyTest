@@ -71,7 +71,7 @@ public class LeftFragment extends Fragment {
         mToolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.look:
-                    ToastUtils.showShort("Look for you");
+                    ToastUtils.INSTANCE.showShort("Look for you");
                     return true;
             }
             return true;

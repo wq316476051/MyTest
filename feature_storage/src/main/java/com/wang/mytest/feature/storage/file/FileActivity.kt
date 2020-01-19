@@ -20,16 +20,16 @@ class FileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (hasStoragePermission(this)) {
+        if (hasStoragePermission()) {
             onStoragePermissionGranted();
         } else {
-            requestStoragePermission(this, 1024)
+            requestStoragePermission()
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1024 && hasStoragePermission(this)) {
+        if (requestCode == 1024 && hasStoragePermission()) {
             onStoragePermissionGranted();
         }
     }

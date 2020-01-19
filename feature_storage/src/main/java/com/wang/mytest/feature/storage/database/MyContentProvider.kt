@@ -7,9 +7,11 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.util.Log
 import com.wang.mytest.feature.storage.database.table.Audio
 import com.wang.mytest.feature.storage.database.table.Label
 import com.wang.mytest.feature.storage.database.table.Speech
+import com.wang.mytest.library.common.logd
 
 /**
  * 升级
@@ -25,9 +27,9 @@ class MyContentProvider : ContentProvider() {
 
         private val uriMatcher: UriMatcher by lazy {
             UriMatcher(UriMatcher.NO_MATCH).apply {
-                addURI(AUTHORITY, "*/$PATH_AUDIO", AUDIO)
-                addURI(AUTHORITY, "*/$PATH_SPEECH", SPEECH)
-                addURI(AUTHORITY, "*/$PATH_LABEL", LABEL)
+                addURI(AUTHORITY, "/$PATH_AUDIO", AUDIO)
+                addURI(AUTHORITY, "/$PATH_SPEECH", SPEECH)
+                addURI(AUTHORITY, "/$PATH_LABEL", LABEL)
             }
         }
     }
@@ -53,24 +55,32 @@ class MyContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        // check something
+        logd(TAG, "insert: uri = $uri");
+        logd(TAG, "insert: id = ${uriMatcher.match(uri)}");
         return when (uriMatcher.match(uri)) {
             AUDIO -> {
-                databaseHelper.use {
-                    val result = insert(Audio.TABLE_NAME, null, values)
-                    ContentUris.withAppendedId(uri, result)
+                databaseHelper.writableDatabase.let {
+                    val resultId = it.insert(Audio.TABLE_NAME, null, values)
+                    val resultUri = ContentUris.withAppendedId(uri, resultId)
+                    context?.contentResolver?.notifyChange(resultUri, null)
+                    resultUri
                 }
             }
             SPEECH -> {
-                databaseHelper.use {
-                    val result = insert(Speech.TABLE_NAME, null, values)
-                    ContentUris.withAppendedId(uri, result)
+                databaseHelper.writableDatabase.let {
+                    val resultId = it.insert(Speech.TABLE_NAME, null, values)
+                    val resultUri = ContentUris.withAppendedId(uri, resultId)
+                    context?.contentResolver?.notifyChange(resultUri, null)
+                    resultUri
                 }
             }
             LABEL -> {
-                databaseHelper.use {
-                    val result = insert(Label.TABLE_NAME, null, values)
-                    ContentUris.withAppendedId(uri, result)
+                databaseHelper.writableDatabase.let {
+                    val resultId = it.insert(Label.TABLE_NAME, null, values)
+                    logd(TAG, "insert: resultId = $resultId");
+                    val resultUri = ContentUris.withAppendedId(uri, resultId)
+                    context?.contentResolver?.notifyChange(resultUri, null)
+                    resultUri
                 }
             }
             else -> null
@@ -79,21 +89,17 @@ class MyContentProvider : ContentProvider() {
 
     @SuppressLint("Recycle")
     override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
+        logd(TAG, "query: uri = $uri");
+        logd(TAG, "query: id = ${uriMatcher.match(uri)}");
         return when (uriMatcher.match(uri)) {
             AUDIO -> {
-                databaseHelper.use {
-                    query(Audio.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
-                }
+                databaseHelper.writableDatabase.query(Audio.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
             }
             SPEECH -> {
-                databaseHelper.use {
-                    query(Speech.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
-                }
+                databaseHelper.writableDatabase.query(Speech.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
             }
             LABEL -> {
-                databaseHelper.use {
-                    query(Label.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
-                }
+                databaseHelper.writableDatabase.query(Label.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)
             }
             else -> null
         }
@@ -103,19 +109,13 @@ class MyContentProvider : ContentProvider() {
         // check something
         return when (uriMatcher.match(uri)) {
             AUDIO -> {
-                databaseHelper.use {
-                    update(Audio.TABLE_NAME, values, selection, selectionArgs)
-                }
+                databaseHelper.writableDatabase.update(Audio.TABLE_NAME, values, selection, selectionArgs)
             }
             SPEECH -> {
-                databaseHelper.use {
-                    update(Speech.TABLE_NAME, values, selection, selectionArgs)
-                }
+                databaseHelper.writableDatabase.update(Speech.TABLE_NAME, values, selection, selectionArgs)
             }
             LABEL -> {
-                databaseHelper.use {
-                    update(Label.TABLE_NAME, values, selection, selectionArgs)
-                }
+                databaseHelper.writableDatabase.update(Label.TABLE_NAME, values, selection, selectionArgs)
             }
             else -> -1
         }

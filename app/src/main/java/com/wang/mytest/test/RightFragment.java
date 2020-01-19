@@ -56,7 +56,7 @@ public class RightFragment extends Fragment {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mToolbar.setNavigationIcon(android.R.drawable.arrow_up_float);
             mToolbar.setNavigationOnClickListener(v -> {
-                ToastUtils.showShort("navigation");
+                ToastUtils.INSTANCE.showShort("navigation");
                 mViewModel.getNavigationLiveDate().setValue(true);
             });
         } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {

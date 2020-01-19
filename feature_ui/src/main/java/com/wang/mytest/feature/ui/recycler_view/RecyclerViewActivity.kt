@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wang.mytest.apt.annotation.Route
 import com.wang.mytest.feature.ui.R
 import com.wang.mytest.library.common.ToastUtils
+import com.wang.mytest.library.common.toast
 
 /**
  * 参考：
@@ -32,10 +33,10 @@ class RecyclerViewActivity : AppCompatActivity() {
             myAdapter = this
             data = MutableList(50) { i -> "item-$i" }
             itemClickListener =  { _, position ->
-                ToastUtils.showShort("click position = $position")
+                toast("click position = $position")
             }
             itemDeleteListener = { _, position ->
-                ToastUtils.showShort("delete position = $position")
+                toast("delete position = $position")
             }
         }
 

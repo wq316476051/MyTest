@@ -1,9 +1,8 @@
 package com.wang.mytest.feature.storage.database.upgrade
 
 import android.database.sqlite.SQLiteDatabase
-import androidx.annotation.CallSuper
-import com.wang.mytest.feature.storage.database.DatabaseHelper
 import com.wang.mytest.feature.storage.database.table.Audio
+import com.wang.mytest.library.common.logd
 import org.jetbrains.anko.db.*
 
 /**
@@ -14,7 +13,22 @@ open class UpgradeFrom0To1 : UpgradeBase() {
 
     override fun getVersion() = 1
 
-    override fun changeInThisVersion(db: SQLiteDatabase) {
+    open override fun onCreate(db: SQLiteDatabase) {
+        super.onCreate(db)
+        logd("UpgradeFrom0To1", "onCreate: ")
+        createAudioTable(db)
+    }
+
+    open override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        super.onUpgrade(db, oldVersion, newVersion)
+        logd("UpgradeFrom0To1", "onUpgrade: ")
+        if (oldVersion < getVersion()) {
+            createAudioTable(db)
+        }
+    }
+
+    private fun createAudioTable(db: SQLiteDatabase) {
+        logd("UpgradeFrom0To1", "createAudioTable: ")
         db.createTable(Audio.TABLE_NAME, true,
                 Audio.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 Audio.FILE_PATH to TEXT,

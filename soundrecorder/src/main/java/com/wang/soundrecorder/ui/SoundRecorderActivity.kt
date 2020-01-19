@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.wang.soundrecorder.R
 import com.wang.soundrecorder.config.RecordState
 import com.wang.soundrecorder.utils.Permissions
@@ -47,7 +48,7 @@ class SoundRecorderActivity : AppCompatActivity() {
     }
 
     private fun bindViews() {
-        viewModel = ViewModelProvider(this).get(RecordViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
         viewModel.getServiceConnectionLiveData.observe(this, Observer {
             Log.d(TAG, "observe: isServiceConnected = $it");
             updateUi(it, viewModel.getRecordState)

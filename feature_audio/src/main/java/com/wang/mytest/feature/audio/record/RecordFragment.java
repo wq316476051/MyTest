@@ -87,7 +87,7 @@ public class RecordFragment extends Fragment {
                     if (hasAllPermissions()) {
                         mRecordManager.startRecording();
                     } else {
-                        ToastUtils.showShort("permissions denied");
+                        ToastUtils.INSTANCE.showShort("permissions denied");
                     }
                     break;
                 case RecordManager.STATE_RECORDING:

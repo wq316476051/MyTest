@@ -2,22 +2,19 @@ package com.wang.mytest.feature.storage.database.upgrade
 
 import android.database.sqlite.SQLiteDatabase
 import androidx.annotation.CallSuper
+import com.wang.mytest.library.common.logd
 
 abstract class UpgradeBase {
 
     abstract fun getVersion(): Int
 
-    abstract fun changeInThisVersion(db: SQLiteDatabase)
-
     @CallSuper
     open fun onCreate(db: SQLiteDatabase) {
-        changeInThisVersion(db)
+        logd("UpgradeBase", "onCreate: ")
     }
 
     @CallSuper
-    fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < getVersion()) {
-            changeInThisVersion(db)
-        }
+    open fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        logd("UpgradeBase", "onUpgrade: ")
     }
 }

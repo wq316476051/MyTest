@@ -3,6 +3,7 @@ package com.wang.mytest.feature.storage.database.upgrade
 import android.database.sqlite.SQLiteDatabase
 import com.wang.mytest.feature.storage.database.table.Audio
 import com.wang.mytest.feature.storage.database.table.Label
+import com.wang.mytest.library.common.logd
 import org.jetbrains.anko.db.*
 
 /**
@@ -14,6 +15,18 @@ open class UpgradeFrom1To2 : UpgradeFrom0To1() {
 
     override fun getVersion(): Int = 2
 
+    open override fun onCreate(db: SQLiteDatabase) {
+        super.onCreate(db)
+        logd("UpgradeFrom1To2", "onCreate: ")
+        createLabelTable(db)
+    }
+
+    open override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        super.onUpgrade(db, oldVersion, newVersion)
+        logd("UpgradeFrom1To2", "onUpgrade: ")
+        createLabelTable(db)
+    }
+
     /**
      * ALTER TABLE 语句用于在已有的表中添加、修改或删除列。
      * 1、在表中添加列
@@ -23,7 +36,8 @@ open class UpgradeFrom1To2 : UpgradeFrom0To1() {
      * 3、要改变表中列的数据类型
      *      ALTER TABLE table_name ALTER COLUMN column_name datatype
      */
-    override fun changeInThisVersion(db: SQLiteDatabase) {
+    private fun createLabelTable(db: SQLiteDatabase) {
+        logd("UpgradeFrom1To2", "createLabelTable: ")
         db.addColumn(Audio.TABLE_NAME, Audio.SIZE to INTEGER)
         db.addColumn(Audio.TABLE_NAME, Audio.HASH_Code to INTEGER)
 

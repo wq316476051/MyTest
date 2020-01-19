@@ -5,6 +5,7 @@ import com.wang.mytest.feature.storage.database.DatabaseHelper
 import com.wang.mytest.feature.storage.database.table.Audio
 import com.wang.mytest.feature.storage.database.table.Label
 import com.wang.mytest.feature.storage.database.table.Speech
+import com.wang.mytest.library.common.logd
 import org.jetbrains.anko.db.*
 
 /**
@@ -15,7 +16,22 @@ class UpgradeFrom2To3 : UpgradeFrom1To2() {
 
     override fun getVersion(): Int = 3
 
-    override fun changeInThisVersion(db: SQLiteDatabase) {
+    open override fun onCreate(db: SQLiteDatabase) {
+        super.onCreate(db)
+        logd("UpgradeFrom2To3", "onCreate: ")
+        createSpeechTable(db)
+    }
+
+    open override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        super.onUpgrade(db, oldVersion, newVersion)
+        logd("UpgradeFrom2To3", "onUpgrade: ")
+        if (oldVersion < getVersion()) {
+            createSpeechTable(db)
+        }
+    }
+
+    private fun createSpeechTable(db: SQLiteDatabase) {
+        logd("UpgradeFrom2To3", "createSpeechTable: ")
         db.createTable(Speech.TABLE_NAME, true,
                 Speech.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 Speech.FILE_PATH to TEXT,

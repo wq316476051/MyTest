@@ -34,7 +34,10 @@ class App : Application() {
     private val mLocaleChangeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             Log.d(TAG, "onReceive: " + intent.action)
-            Handler().postDelayed({ Process.killProcess(Process.myPid()) }, 50)
+            Handler().postDelayed({
+                unregisterReceiver(this)
+                Process.killProcess(Process.myPid())
+            }, 50)
         }
     }
 }
