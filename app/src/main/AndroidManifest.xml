@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wang.mytest">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -34,6 +35,7 @@
         <activity android:name=".feature.ui.view_pager2.ViewPager2Activity" />
         <activity android:name=".TestKotlinActivity" />
         <activity android:name=".permission.PermissionActivity" />
+        <activity android:name=".network.NetworkActivity" />
 
         <service android:name=".lifecycle.LifecycleService" />
     </application>

@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.wang.soundrecorder.R
 import com.wang.soundrecorder.config.RecordState
@@ -34,8 +33,8 @@ class SoundRecorderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sound_recorder)
 
-        initViews();
-        bindViews();
+        initViews()
+        bindViews()
     }
 
     private fun initViews() {
@@ -50,11 +49,11 @@ class SoundRecorderActivity : AppCompatActivity() {
     private fun bindViews() {
         viewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
         viewModel.getServiceConnectionLiveData.observe(this, Observer {
-            Log.d(TAG, "observe: isServiceConnected = $it");
+            Log.d(TAG, "observe: isServiceConnected = $it")
             updateUi(it, viewModel.getRecordState)
         })
         viewModel.getRecordStateLiveData.observe(this, Observer {
-            Log.d(TAG, "observe: recordState = $it");
+            Log.d(TAG, "observe: recordState = $it")
             updateUi(viewModel.isServiceConnected, it)
         })
         viewModel.getMaxAmplitudeLiveData.observe(this, Observer {
@@ -91,19 +90,19 @@ class SoundRecorderActivity : AppCompatActivity() {
         } else {
             when (recordState) {
                 RecordState.IDLE -> {
-                    Log.d(TAG, "observe: recordState = IDLE");
+                    Log.d(TAG, "observe: recordState = IDLE")
                     btnTag.isEnabled = false
                     btnStartRecord.isEnabled = true
                     btnStopRecord.isEnabled = false
                 }
                 RecordState.RECORDING -> {
-                    Log.d(TAG, "observe: recordState = RECORDING");
+                    Log.d(TAG, "observe: recordState = RECORDING")
                     btnTag.isEnabled = true
                     btnStartRecord.isEnabled = true
                     btnStopRecord.isEnabled = true
                 }
                 RecordState.PAUSED -> {
-                    Log.d(TAG, "observe: recordState = PAUSED");
+                    Log.d(TAG, "observe: recordState = PAUSED")
                     btnTag.isEnabled = true
                     btnStartRecord.isEnabled = true
                     btnStopRecord.isEnabled = true
