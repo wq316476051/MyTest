@@ -5,7 +5,7 @@ import android.os.Build
 
 object AppUtils {
 
-    var app: Application? = null
+    lateinit var app: Application
         private set
 
     val isAtLeastO: Boolean

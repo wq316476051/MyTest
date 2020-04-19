@@ -7,7 +7,6 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.util.Log
 import com.wang.mytest.feature.storage.database.table.Audio
 import com.wang.mytest.feature.storage.database.table.Label
 import com.wang.mytest.feature.storage.database.table.Speech

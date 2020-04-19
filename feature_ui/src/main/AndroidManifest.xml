@@ -27,6 +27,7 @@
         <activity android:name=".recycler_view.RecyclerViewActivity" />
         <activity android:name=".search_view.SearchViewActivity" />
         <activity android:name=".view.custom.CustomViewActivity" />
+        <activity android:name=".fragment.AnimFragmentActivity" />
     </application>
 
 </manifest>

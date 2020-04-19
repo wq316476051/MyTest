@@ -2,12 +2,18 @@ package com.wang.mytest;
 
 import android.app.ActivityManager;
 import android.content.res.Configuration;
+import android.media.AudioManager;
+import android.media.AudioRecordingConfiguration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.wang.mytest.apt.annotation.Route;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +76,7 @@ public class TestActivity extends AppCompatActivity {
             long totalMemory = Runtime.getRuntime().totalMemory();
             Log.d(TAG, "onCreate: totalMemory = " + totalMemory);
         }
+
     }
 
     @Override

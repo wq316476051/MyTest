@@ -1,4 +1,4 @@
-include ':app', ':big_screen', ':soundrecorder'
+include ':app', ':big_screen', ':soundrecorder', ':architecture'
 
 include  ':feature_ui'
 include  ':feature_audio'

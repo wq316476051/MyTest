@@ -58,7 +58,8 @@ buildscript {
 
                 // androidTest
                 runner                    : 'androidx.test.ext:junit:1.1.1',
-                espresso_core             : 'androidx.test.espresso:espresso-core:3.2.0'
+                espresso_core             : 'androidx.test.espresso:espresso-core:3.2.0',
+                espresso_intents          : 'androidx.test.espresso:espresso-intents:3.2.0',
         ]
     }
 
