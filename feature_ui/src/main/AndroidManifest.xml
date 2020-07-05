@@ -28,6 +28,9 @@
         <activity android:name=".search_view.SearchViewActivity" />
         <activity android:name=".view.custom.CustomViewActivity" />
         <activity android:name=".fragment.AnimFragmentActivity" />
+        <activity android:name=".surface_view.SurfaceViewActivity" />
+        <activity android:name=".accessibility.AccessibilityActivity" />
+        <activity android:name=".accessibility2.Accessibility2Activity" />
     </application>
 
 </manifest>
