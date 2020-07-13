@@ -31,6 +31,7 @@
         <activity android:name=".surface_view.SurfaceViewActivity" />
         <activity android:name=".accessibility.AccessibilityActivity" />
         <activity android:name=".accessibility2.Accessibility2Activity" />
+        <activity android:name=".MyWebViewActivity" />
     </application>
 
 </manifest>
