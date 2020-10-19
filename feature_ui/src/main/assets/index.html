@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>WebView</title>
+        <style>
+            body {
+                background: #FF0000;
+            }
+            .btn {
+                line-height: 40px;
+                margin: 10px;
+                background: #cccccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>WebView</h2>
+        <div><span>请输入要传递的值：</span><input type="text" id="input"></div>
+        <div id="btn"><span class="btn">点我</span></div>
+
+        <script type="text/javascript">
+            var btnEle = document.getElementById("btn")
+            var inputEle = document.getElementById("input")
+            btnEle.addEventListener("click", function() {
+                var str = inputEle.value
+                if (window.android) {
+                    android.setValue(str)
+                } else {
+                    alert("android not found.")
+                }
+            })
+        </script>
+    </body>
+</html>
