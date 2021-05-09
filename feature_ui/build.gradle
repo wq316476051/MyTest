@@ -35,7 +35,6 @@ dependencies {
     kapt project(":route_compiler")
 
     implementation project(":lib_common")
-    implementation project(":lib_viewlinker")
 
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.constraintlayout

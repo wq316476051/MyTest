@@ -44,10 +44,8 @@ dependencies {
     implementation project(":feature_audio")
     implementation project(":feature_storage")
     implementation project(":feature_sensor")
-    implementation project(":big_screen")
 
     implementation project(":lib_common")
-    implementation project(":lib_viewlinker")
 
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.viewpager2
