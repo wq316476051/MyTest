@@ -1,11 +1,8 @@
 package com.wang.mytest.feature.storage.database.upgrade
 
 import android.database.sqlite.SQLiteDatabase
-import com.wang.mytest.feature.storage.database.DatabaseHelper
-import com.wang.mytest.feature.storage.database.table.Audio
-import com.wang.mytest.feature.storage.database.table.Label
 import com.wang.mytest.feature.storage.database.table.Speech
-import com.wang.mytest.library.common.logd
+import com.wang.mytest.common.logd
 import org.jetbrains.anko.db.*
 
 /**

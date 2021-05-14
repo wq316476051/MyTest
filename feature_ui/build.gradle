@@ -34,7 +34,7 @@ dependencies {
     implementation project(":route_api")
     kapt project(":route_compiler")
 
-    implementation project(":lib_common")
+    implementation project(':libcommon')
 
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.constraintlayout

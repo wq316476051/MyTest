@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.wang.mytest.R;
 import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.feature.ui.layout.CardLayout;
+import com.wang.mytest.ui.layout.CardLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import kotlin.Unit;
 
 @Route(path = "/activity/app/dual_fragment", title = "dualFragment")
 public class DualFragmentActivity extends AppCompatActivity {

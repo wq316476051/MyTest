@@ -3,7 +3,7 @@ package com.wang.mytest.network
 import android.net.*
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.wang.mytest.library.common.AppUtils
+import com.wang.mytest.common.util.AppUtils
 
 object NetworkStateLiveData : LiveData<Boolean>() {
 
@@ -37,7 +37,7 @@ object NetworkStateLiveData : LiveData<Boolean>() {
     }
 
     private fun getConnectivityManager(): ConnectivityManager? {
-        return AppUtils.app?.getSystemService(ConnectivityManager::class.java)
+        return AppUtils.getApp().getSystemService(ConnectivityManager::class.java)
     }
 
     private fun checkAndPost(isConnected: Boolean) {

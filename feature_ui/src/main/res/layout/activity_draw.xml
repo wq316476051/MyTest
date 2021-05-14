@@ -39,7 +39,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <com.wang.mytest.feature.ui.view.views.DrawView
+    <com.wang.mytest.ui.view.views.DrawView
         android:id="@+id/draw_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

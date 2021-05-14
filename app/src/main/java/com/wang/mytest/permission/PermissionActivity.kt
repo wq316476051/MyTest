@@ -2,12 +2,10 @@ package com.wang.mytest.permission
 
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.wang.mytest.R
-import com.wang.mytest.library.common.*
+import com.wang.mytest.common.*
 import java.lang.StringBuilder
-import java.util.*
 
 class PermissionActivity : AppCompatActivity() {
 
@@ -71,7 +69,6 @@ class PermissionActivity : AppCompatActivity() {
                 val shouldShowStorageRationale = shouldShowStorageRationale()
                 val shouldShowAudioRationale = shouldShowAudioRationale()
 
-                val dialog: AlertDialog
                 val stringBuilder: StringBuilder = StringBuilder()
                 if (!hasStoragePermission && !hasAudioPermission) {
                     if (shouldShowStorageRationale || shouldShowAudioRationale) {

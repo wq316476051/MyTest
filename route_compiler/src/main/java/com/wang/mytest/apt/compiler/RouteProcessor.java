@@ -90,11 +90,11 @@ public class RouteProcessor extends AbstractProcessor {
         mMessager.printMessage(Diagnostic.Kind.NOTE, "process Route start.");
         mMessager.printMessage(Diagnostic.Kind.WARNING, "process Route start." + routeBeanList);
 
-        // 成员变量
+        // Member Field
         FieldSpec fieldMap = FieldSpec.builder(ParameterizedTypeName.get(Map.class, String.class, RouteBean.class), "mMap", Modifier.PRIVATE, Modifier.STATIC)
                 .build();
 
-        // 静态代码块
+        // Static code block
         CodeBlock.Builder staticBlockBuilder = CodeBlock.builder()
                 .addStatement("mMap = new $T<>()", HashMap.class);
         for (RouteBean routeBean : routeBeanList) {
@@ -103,7 +103,7 @@ public class RouteProcessor extends AbstractProcessor {
         }
         CodeBlock staticBlock = staticBlockBuilder.build();
 
-        // 成员方法
+        // Member method
         MethodSpec methodGet = MethodSpec.methodBuilder("get")
                 .addAnnotation(Override.class)
                 .addModifiers(Modifier.PUBLIC)
@@ -111,7 +111,7 @@ public class RouteProcessor extends AbstractProcessor {
                 .addStatement("return mMap")
                 .build();
 
-        // 类定义
+        // Class
         TypeSpec routeProvider = TypeSpec.classBuilder("RouteProvider" + System.currentTimeMillis())
                 .addModifiers(Modifier.PUBLIC)
                 .addSuperinterface(ClassName.get("com.wang.mytest.apt.api", "IRouteProvider"))
@@ -120,7 +120,7 @@ public class RouteProcessor extends AbstractProcessor {
                 .addMethod(methodGet)
                 .build();
 
-        // Java 文件
+        // Java file
         JavaFile javaFile = JavaFile.builder("com.wang.mytest", routeProvider)
                 .build();
 

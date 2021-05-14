@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wang.mytest.feature.storage.R
 import com.wang.mytest.feature.storage.database.table.Label
-import com.wang.mytest.library.common.logd
+import com.wang.mytest.common.logd
 
 class DatabaseQueryFragment : Fragment() {
 

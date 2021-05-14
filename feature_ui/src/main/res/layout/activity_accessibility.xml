@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.wang.mytest.feature.ui.accessibility.AccessibilityView
+    <com.wang.mytest.ui.accessibility.AccessibilityView
         android:id="@+id/accessibility_view"
         android:importantForAccessibility="yes"
         android:layout_width="match_parent"

@@ -2,7 +2,7 @@ package com.wang.mytest.feature.storage.database.upgrade
 
 import android.database.sqlite.SQLiteDatabase
 import androidx.annotation.CallSuper
-import com.wang.mytest.library.common.logd
+import com.wang.mytest.common.logd
 
 abstract class UpgradeBase {
 

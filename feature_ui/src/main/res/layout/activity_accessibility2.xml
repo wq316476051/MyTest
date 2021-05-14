@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.wang.mytest.feature.ui.accessibility2.CustomView
+    <com.wang.mytest.ui.accessibility2.CustomView
         android:id="@+id/custom_view"
         android:importantForAccessibility="yes"
         android:layout_width="match_parent"
         android:layout_height="700dp" />
 
-    <com.wang.mytest.feature.ui.accessibility2.MyButton
+    <com.wang.mytest.ui.accessibility2.MyButton
         android:id="@+id/btn_2"
         android:text="Button2"
         android:layout_width="match_parent"

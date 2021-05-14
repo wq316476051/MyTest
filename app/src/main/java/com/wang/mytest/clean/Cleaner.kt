@@ -1,6 +1,6 @@
 package com.wang.mytest.clean
 
-import com.wang.mytest.library.common.AppUtils
+import com.wang.mytest.common.util.AppUtils
 import java.io.File
 
 object Cleaner {
@@ -30,9 +30,9 @@ object Cleaner {
             EXTERNAL_PRIVATE_FILE -> {
             }
             EXTERNAL_PUBLIC_FILE -> {
-                deleteFile(AppUtils.app.filesDir, FileMatchers.audioFile())
-                deleteFile(AppUtils.app.filesDir) { fileName -> fileName.endsWith(".temp")}
-                deleteFile(AppUtils.app.filesDir, FileMatchers.allOf(FileMatchers.audioFile()))
+                deleteFile(AppUtils.getApp().filesDir, FileMatchers.audioFile())
+                deleteFile(AppUtils.getApp().filesDir) { fileName -> fileName.endsWith(".temp")}
+                deleteFile(AppUtils.getApp().filesDir, FileMatchers.allOf(FileMatchers.audioFile()))
             }
         }
     }

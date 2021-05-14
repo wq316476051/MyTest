@@ -1,7 +1,6 @@
 package com.wang.mytest.test;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wang.mytest.R;
-import com.wang.mytest.feature.ui.layout.CardLayout;
-import com.wang.mytest.library.common.ToastUtils;
+import com.wang.mytest.common.util.ToastUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

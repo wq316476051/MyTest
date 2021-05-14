@@ -3,13 +3,10 @@ package com.wang.mytest.test;
 import android.app.Application;
 import android.os.Looper;
 
-import com.wang.mytest.feature.ui.layout.CardLayout;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 public class TestViewModel extends AndroidViewModel {
 

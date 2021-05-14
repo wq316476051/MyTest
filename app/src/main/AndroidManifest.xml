@@ -31,8 +31,8 @@
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"/>
 
         <activity android:name=".lifecycle.LifecycleActivity" />
-        <activity android:name=".feature.ui.ScreenActivity" />
-        <activity android:name=".feature.ui.view_pager2.ViewPager2Activity" />
+        <activity android:name=".ui.ScreenActivity" />
+        <activity android:name="com.wang.mytest.ui.view.view_pager2.ViewPager2Activity" />
         <activity android:name=".TestKotlinActivity" />
         <activity android:name=".permission.PermissionActivity" />
         <activity android:name=".network.NetworkActivity" />

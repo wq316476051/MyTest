@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.wang.mytest.feature.ui.view.custom.CustomView
+    <com.wang.mytest.ui.view.custom.CustomView
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:background="#33FF0000" />
