@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-import com.wang.mytest.R;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

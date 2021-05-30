@@ -6,3 +6,6 @@
 /build
 /captures
 .externalNativeBuild
+
+./app_soundrecorder
+./app_launcher

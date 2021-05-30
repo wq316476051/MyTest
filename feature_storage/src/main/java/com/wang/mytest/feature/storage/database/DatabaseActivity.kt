@@ -7,14 +7,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.wang.mytest.apt.annotation.Route
 import com.wang.mytest.feature.storage.R
 
 /**
  * BottomNavigationView + ViewPager2 + RecyclerView
  */
 @Suppress("UNREACHABLE_CODE")
-@Route(path = "/activity/storage/database", title = "Database")
 class DatabaseActivity : FragmentActivity() {
 
     companion object {

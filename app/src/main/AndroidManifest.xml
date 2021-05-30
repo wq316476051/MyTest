@@ -14,26 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppThemeCommon.Immersive">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity android:name=".test.DualFragmentActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"/>
 
-        <activity android:name=".TestActivity"
-            android:resizeableActivity="true"
-            android:supportsPictureInPicture="true"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"/>
-
         <activity android:name=".lifecycle.LifecycleActivity" />
-        <activity android:name=".ui.ScreenActivity" />
-        <activity android:name="com.wang.mytest.ui.view.view_pager2.ViewPager2Activity" />
-        <activity android:name=".TestKotlinActivity" />
+        <activity android:name="com.wang.mytest.ui.view.viewpager2.ViewPager2Activity" />
         <activity android:name=".permission.PermissionActivity" />
         <activity android:name=".network.NetworkActivity" />
 

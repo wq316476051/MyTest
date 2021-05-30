@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppThemeCommon" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+    </style>
+
+    <style name="AppThemeCommon.Immersive">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <!-- Toolbar 的弹出窗口在 Toolbar 的下面 -->
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+    </style>
+</resources>

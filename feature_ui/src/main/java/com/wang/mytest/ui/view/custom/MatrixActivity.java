@@ -7,10 +7,8 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+import com.wang.mytest.ui.R;
 
-@Route(path = "/activity/ui/view/custom", title = "MatrixView")
 public class MatrixActivity extends AppCompatActivity {
 
     private MatrixView mMatrixView;

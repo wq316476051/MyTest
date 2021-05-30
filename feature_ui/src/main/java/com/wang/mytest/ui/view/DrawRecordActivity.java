@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.wang.mytest.R;
+import com.wang.mytest.ui.R;
 
 import java.io.File;
 import java.io.FilenameFilter;

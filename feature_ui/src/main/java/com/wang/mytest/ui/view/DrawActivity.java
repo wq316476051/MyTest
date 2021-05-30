@@ -10,13 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 import com.wang.mytest.ui.view.views.DrawView;
 
 import androidx.annotation.Nullable;
 
-@Route(path = "/activity/ui/view/draw", title = "Draw")
 public class DrawActivity extends Activity {
 
     private static final String TAG = "DrawActivity";

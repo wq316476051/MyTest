@@ -1,15 +1,13 @@
-include ':feature_architecture'
-include ':feature_media'
-include ':app_soundrecorder'
 include ':app'
-include ':app_launcher'
 
-include  ':feature_ui'
-include  ':feature_storage'
-include  ':feature_sensor'
+include ':feature_ui'
+include ':feature_storage'
+//include ':feature_sensor'
+//include ':feature_architecture'
+//include ':feature_media'
 
 include ':libcommon'
 
-include ':route_annotation'
-include ':route_compiler'
-include ':route_api'
+//include ':route_annotation'
+//include ':route_compiler'
+//include ':route_api'

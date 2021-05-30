@@ -46,7 +46,7 @@ class CustomView : View {
         if (isFirstPointer(event)) {
             val rawX = event.getRawX(event.actionIndex)
             val rawY = event.getRawY(event.actionIndex)
-            LogUtils.d(TAG, "handleActionMove: rawX = $rawX, rawY = $rawY")
+            LogUtils.debug(TAG, "handleActionMove: rawX = $rawX, rawY = $rawY")
         }
     }
 
@@ -61,14 +61,14 @@ class CustomView : View {
         }
         val rawX = event.getRawX(pointerIndex)
         val rawY = event.getRawY(pointerIndex)
-        LogUtils.d(TAG, "handleActionMove: rawX = $rawX, rawY = $rawY")
+        LogUtils.debug(TAG, "handleActionMove: rawX = $rawX, rawY = $rawY")
     }
 
     private fun handleActionUp(event: MotionEvent) {
         if (isFirstPointer(event)) {
             val rawX = event.getRawX(event.actionIndex)
             val rawY = event.getRawY(event.actionIndex)
-            LogUtils.d(TAG, "handleActionMove: rawX = $rawX, rawY = $rawY")
+            LogUtils.debug(TAG, "handleActionMove: rawX = $rawX, rawY = $rawY")
         }
     }
 

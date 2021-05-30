@@ -5,7 +5,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wang.mytest.common.observer.LocaleChangeObserver;
+import com.wang.mytest.common.util.LogUtils;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -17,5 +22,13 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, MainFragment.newInstance())
                     .commit();
         }
+
+        LocaleChangeObserver.create(this, this)
+                .setListener(this::onLocaleChanged)
+                .observe();
+    }
+
+    private void onLocaleChanged() {
+        LogUtils.debug(TAG, "onLocaleChanged: ");
     }
 }

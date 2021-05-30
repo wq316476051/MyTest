@@ -1,0 +1,12 @@
+1、沉浸式
+问题：一个Activity中添加多个Fragment导致fitsSystemWindows无效的问题
+详情：现在的app主界面基本上是一个Activity+多个Fragment来实现页面切换的，
+    如果每个Fragment都要实现沉浸式状态栏，一般是布局文件中通过fitsSystemWindows来预留状态栏的位置，
+    但是这样会有一个问题，当多个Fragment添加到Activity中显示后，只有第一个Fragment的fitsSystemWindows起作用了，
+    而其他的都失效了，布局会出现在状态栏的下面。
+原因：当第一个Fragment添加到Activity中的时候，Activity寻找出有fitsSystemWindows的子布局为其预留出状态栏的空间，
+    其实就是设置一个padding，而其他Fragment添加到Activity中的时候，因为状态栏空间的适配已经被消费过一次了，
+    Activity并不会再次去添加这个padding。因此我们需要自定义一个FrameLayout，
+    重写它的状态栏空间适配的时机和它的适配事件的分发。
+
+见：WindowInsetsFrameLayout

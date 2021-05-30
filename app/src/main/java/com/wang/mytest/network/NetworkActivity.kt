@@ -5,9 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.wang.mytest.apt.annotation.Route
 
-@Route(path = "/activity/app/network", title = "network")
 class NetworkActivity : AppCompatActivity() {
 
     companion object {

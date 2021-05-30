@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-@Route(path = "/activity/ui/animation/fragment_animation", title = "FragmentAnimation")
 public class FragmentAnimationActivity extends FragmentActivity {
 
     int mStackLevel = 1;

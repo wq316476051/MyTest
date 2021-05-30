@@ -37,7 +37,7 @@ object Cleaner {
         }
     }
 
-    private fun deleteFile(dir: File?, matcher: FileMatcher<String>) {
+    private fun deleteFile(dir: File?, matcher: FileFilter<String>) {
         dir?.apply {
             dir.listFiles().forEach { file ->
                 if (matcher.matches(file.name)) {

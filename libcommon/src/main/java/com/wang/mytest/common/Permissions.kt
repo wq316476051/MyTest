@@ -21,12 +21,6 @@ fun Context.hasAudioPermission(): Boolean = hasPermission(AUDIO_PERMISSION)
 fun Activity.requestStoragePermission() =
         requestPermissions(arrayOf(STORAGE_PERMISSION), REQUEST_CODE_STORAGE)
 
-fun Activity.requestAudioPermission() =
-        requestPermissions(arrayOf(AUDIO_PERMISSION), REQUEST_CODE_AUDIO)
-
-fun Activity.requestStorageAndAudioPermission() =
-        requestPermissions(arrayOf(STORAGE_PERMISSION, AUDIO_PERMISSION), REQUEST_CODE_STORAGE_AND_AUDIO)
-
 fun Activity.shouldShowStorageRationale() =
         shouldShowRequestPermissionRationale(STORAGE_PERMISSION)
 

@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +21,6 @@ import androidx.fragment.app.FragmentActivity;
 /**
  * Demonstrates how to show an AlertDialog that is managed by a Fragment.
  */
-@Route(path = "/activity/ui/fragment/Alert", title = "FragmentAlert")
 public class FragmentAlertDialogSupport extends FragmentActivity {
     
     private static final String TAG = "FragmentAlertDialogSupport";

@@ -10,7 +10,6 @@ import android.net.Uri
 import com.wang.mytest.feature.storage.database.table.Audio
 import com.wang.mytest.feature.storage.database.table.Label
 import com.wang.mytest.feature.storage.database.table.Speech
-import com.wang.mytest.common.logd
 
 /**
  * 升级
@@ -54,8 +53,6 @@ class MyContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        logd(TAG, "insert: uri = $uri");
-        logd(TAG, "insert: id = ${uriMatcher.match(uri)}");
         return when (uriMatcher.match(uri)) {
             AUDIO -> {
                 databaseHelper.writableDatabase.let {
@@ -76,7 +73,6 @@ class MyContentProvider : ContentProvider() {
             LABEL -> {
                 databaseHelper.writableDatabase.let {
                     val resultId = it.insert(Label.TABLE_NAME, null, values)
-                    logd(TAG, "insert: resultId = $resultId");
                     val resultUri = ContentUris.withAppendedId(uri, resultId)
                     context?.contentResolver?.notifyChange(resultUri, null)
                     resultUri
@@ -88,8 +84,6 @@ class MyContentProvider : ContentProvider() {
 
     @SuppressLint("Recycle")
     override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
-        logd(TAG, "query: uri = $uri");
-        logd(TAG, "query: id = ${uriMatcher.match(uri)}");
         return when (uriMatcher.match(uri)) {
             AUDIO -> {
                 databaseHelper.writableDatabase.query(Audio.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder)

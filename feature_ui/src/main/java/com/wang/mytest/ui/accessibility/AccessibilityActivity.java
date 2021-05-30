@@ -3,13 +3,12 @@ package com.wang.mytest.ui.accessibility;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
-@Route(path = "/activity/ui/accessibility", title = "Accessibility")
 public class AccessibilityActivity extends Activity {
 
     @Override

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wang.mytest.feature.storage.R
 import com.wang.mytest.feature.storage.database.table.Label
-import com.wang.mytest.common.logd
 
 class DatabaseQueryFragment : Fragment() {
 
@@ -49,17 +48,12 @@ class DatabaseQueryFragment : Fragment() {
     }
 
     private fun loadData() {
-        logd(TAG, "loadData: ");
         context?.contentResolver?.query(LABEL_URI, null, null, null, null)?.use {
-            logd(TAG, "loadData: count = ${it.count}");
             val data = mutableListOf<Data>()
             while (it.moveToNext()) {
                 val filePath = it.getString(it.getColumnIndex(Label.FILE_PATH))
                 val content = it.getString(it.getColumnIndex(Label.CONTENT))
                 val time = it.getLong(it.getColumnIndex(Label.TIME))
-                logd(TAG, "loadData: filePath = $filePath")
-                logd(TAG, "loadData: content = $content")
-                logd(TAG, "loadData: time = $time")
                 if (filePath == null || content == null) {
                     continue
                 }

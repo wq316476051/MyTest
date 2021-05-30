@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.wang.mytest.R;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

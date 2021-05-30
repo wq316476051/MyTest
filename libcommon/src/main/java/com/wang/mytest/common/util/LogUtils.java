@@ -8,11 +8,19 @@ public final class LogUtils {
     private LogUtils() {
     }
 
-    public static void d(String tag, String msg) {
-        d(PREFIX, tag, msg);
+    public static void debug(String tag, String msg) {
+        Log.d(PREFIX + tag, msg);
     }
 
-    public static void d(String prefix, String tag, String msg) {
-        Log.d(prefix + tag, msg);
+    public static void info(String tag, String msg) {
+        Log.i(PREFIX + tag, msg);
+    }
+
+    public static void warn(String tag, String msg) {
+        Log.w(PREFIX + tag, msg);
+    }
+
+    public static void error(String tag, String msg) {
+        Log.e(PREFIX + tag, msg);
     }
 }

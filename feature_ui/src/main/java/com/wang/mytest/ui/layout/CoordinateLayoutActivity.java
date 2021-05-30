@@ -2,13 +2,12 @@ package com.wang.mytest.ui.layout;
 
 import android.os.Bundle;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-@Route(path = "/activity/ui/layout/coordinator", title = "CoordinatorLayout")
 public class CoordinateLayoutActivity extends AppCompatActivity {
 
     @Override

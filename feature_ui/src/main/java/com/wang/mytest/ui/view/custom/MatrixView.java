@@ -11,7 +11,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.wang.mytest.R;
+import com.wang.mytest.ui.R;
 import com.wang.mytest.common.util.LogUtils;
 
 public class MatrixView extends View {
@@ -32,8 +32,8 @@ public class MatrixView extends View {
         options.inJustDecodeBounds = true;
         mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_small, options);
 
-        LogUtils.d(TAG, "MatrixView: " + options.outWidth);
-        LogUtils.d(TAG, "MatrixView:2 " + mBitmap.getWidth());
+        LogUtils.debug(TAG, "MatrixView: " + options.outWidth);
+        LogUtils.debug(TAG, "MatrixView:2 " + mBitmap.getWidth());
     }
 
     @Override

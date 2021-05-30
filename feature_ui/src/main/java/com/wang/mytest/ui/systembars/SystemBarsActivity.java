@@ -7,7 +7,7 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wang.mytest.R;
+import com.wang.mytest.ui.R;
 import com.wang.mytest.common.util.LogUtils;
 import com.wang.mytest.common.util.ScreenUtils;
 
@@ -31,7 +31,7 @@ public class SystemBarsActivity extends AppCompatActivity {
         btnResetSystemBars.setOnClickListener(this::onResetSystemBars);
 
         getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
-            LogUtils.d(TAG, "onSystemUiVisibilityChange: " + visibility);
+            LogUtils.debug(TAG, "onSystemUiVisibilityChange: " + visibility);
         });
     }
 

@@ -1,6 +1,5 @@
 package com.wang.mytest.common.acitivity;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -8,69 +7,81 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.wang.mytest.common.util.LogUtils;
+import com.wang.mytest.common.Constants;
+import com.wang.mytest.common.util.AppUtils;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 
 public class ActivityFilter {
 
     private static final String TAG = "ActivityFilter";
 
-    private static final String ACTION = "test.TEST";
-    private static final String META_NAME = "test.TEST";
-    private static final String META_SUMMARY = "test.SUMMARY";
+    public static List<Entity> getActivities() {
+        Intent intent = new Intent(Constants.ACTION_MAIN);
 
-    private static TestBean rootBean = new TestBean();
-
-    private static final List<TestBean> TEST_BEANS = new LinkedList<>();
-
-    public static List<TestBean> getActivities(LinkedList<String> segment) {
-        final StringBuilder prefix = new StringBuilder();
-        for (String s : segment) {
-            prefix.append("/").append(s);
+        PackageManager packageManager = AppUtils.getPackageManager();
+        List<ResolveInfo> resolveInfoList = packageManager.queryIntentActivities(intent, PackageManager.GET_META_DATA);
+        if (resolveInfoList.isEmpty()) {
+            return Collections.emptyList();
         }
 
-        final List<TestBean> result = new ArrayList<>();
-        for (TestBean testBean : TEST_BEANS) {
-            if (testBean.match(prefix.toString())) {
-                result.add(testBean);
+        final List<Entity> result = new ArrayList<>(resolveInfoList.size());
+        for (ResolveInfo resolveInfo : resolveInfoList) {
+            final ActivityInfo activityInfo = resolveInfo.activityInfo;
+            String packageName = activityInfo.packageName;
+            String className = activityInfo.name;
+
+            Bundle metaData = activityInfo.metaData;
+            String summary = metaData.getString(Constants.NAME_SUMMARY);
+
+            if (TextUtils.isEmpty(packageName) || TextUtils.isEmpty(className) || TextUtils.isEmpty(summary)) {
+                continue;
             }
+
+            Entity entity = new Entity(packageName, className, summary);
+            result.add(entity);
         }
         return result;
     }
 
-    public static void init(PackageManager packageManager) {
-        LogUtils.d(TAG, "init: packageManager = " + packageManager);
-        Intent intent = new Intent(ACTION);
-        List<ResolveInfo> resolveInfoList
-                = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+    public static class Entity {
 
-        for (ResolveInfo resolveInfo : resolveInfoList) {
-            ActivityInfo activityInfo = resolveInfo.activityInfo;
-            LogUtils.d(TAG, "init: packageName = " + activityInfo.packageName + "; name = " + activityInfo.name);
+        private String mPackageName;
 
-            if (TextUtils.isEmpty(activityInfo.packageName) || TextUtils.isEmpty(activityInfo.name)) {
-                continue;
-            }
-            ComponentName componentName = new ComponentName(activityInfo.packageName, activityInfo.name);
+        private String mClassName;
 
-            Bundle metaData = activityInfo.metaData;
-            if (metaData == null) {
-                continue;
-            }
-            String summary = metaData.getString(META_SUMMARY);
-            String path = metaData.getString(META_NAME);
-            if (TextUtils.isEmpty(summary) || TextUtils.isEmpty(path)) {
-                continue;
-            }
-            TEST_BEANS.add(TestBean.createFolder(summary, path, componentName));
+        private String mSummary;
+
+        public String getPackageName() {
+            return mPackageName;
         }
 
-        rootBean.setPath("/activity");
-        rootBean.setNext(TEST_BEANS);
+        public void setPackageName(String packageName) {
+            mPackageName = packageName;
+        }
+
+        public String getClassName() {
+            return mClassName;
+        }
+
+        public void setClassName(String className) {
+            mClassName = className;
+        }
+
+        public String getSummary() {
+            return mSummary;
+        }
+
+        public void setSummary(String summary) {
+            mSummary = summary;
+        }
+
+        public Entity(String packageName, String className, String summary) {
+            mPackageName = packageName;
+            mClassName = className;
+            mSummary = summary;
+        }
     }
-
-
 }

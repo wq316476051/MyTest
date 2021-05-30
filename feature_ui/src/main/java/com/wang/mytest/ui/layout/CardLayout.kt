@@ -11,7 +11,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.text.TextUtils
 import android.util.Log
 import android.view.ViewGroup
-import com.wang.mytest.R
+import com.wang.mytest.ui.R
 import java.util.*
 
 

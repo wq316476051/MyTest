@@ -30,6 +30,9 @@ buildscript {
                 recyclerview              : "androidx.recyclerview:recyclerview:1.0.0",
                 cardview                  : "androidx.cardview:cardview:1.0.0",
                 // alternately - if using Java8, use the following instead of lifecycle-compiler
+                interpolator              : "androidx.interpolator:interpolator:1.0.0",
+
+                localbroadcastmanager     : 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
 
                 lifecycle_extensions      : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version", // ViewModel and LiveData
                 lifecycle_viewmodel       : "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version", // alternatively - just ViewModel

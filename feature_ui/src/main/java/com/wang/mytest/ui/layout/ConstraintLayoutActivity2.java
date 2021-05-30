@@ -7,15 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-@Route(path = "/activity/ui/layout/constraint2", title = "ConstraintLayout2")
 public class ConstraintLayoutActivity2 extends AppCompatActivity {
 
     private ConstraintLayout mConstraintLayout;

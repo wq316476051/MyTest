@@ -9,7 +9,7 @@ import android.view.*
 import android.view.animation.Animation
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.wang.mytest.R
+import com.wang.mytest.ui.R
 import com.wang.mytest.common.util.ToastUtils
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.widget.Toolbar

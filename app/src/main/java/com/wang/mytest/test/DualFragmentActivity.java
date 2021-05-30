@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.wang.mytest.R;
-import com.wang.mytest.apt.annotation.Route;
+;
 import com.wang.mytest.ui.layout.CardLayout;
 
 import androidx.annotation.Nullable;
@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
-@Route(path = "/activity/app/dual_fragment", title = "dualFragment")
 public class DualFragmentActivity extends AppCompatActivity {
 
     private static final String TAG = "DualFragmentActivity";

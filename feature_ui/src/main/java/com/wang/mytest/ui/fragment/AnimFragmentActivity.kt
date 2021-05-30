@@ -7,10 +7,9 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import androidx.fragment.app.FragmentActivity
-import com.wang.mytest.apt.annotation.Route
-import com.wang.mytest.R
 
-@Route(path = "/activity/ui/fragment/anim", title = "AnimFragment")
+import com.wang.mytest.ui.R
+
 class AnimFragmentActivity : FragmentActivity(), View.OnClickListener {
 
     companion object {

@@ -3,14 +3,13 @@ package com.wang.mytest.ui.view;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 import com.wang.mytest.common.util.ToastUtils;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
-@Route(path = "/activity/ui/view/delete", title = "Delete")
 public class DeleteDialogActivity extends FragmentActivity {
 
     @Override

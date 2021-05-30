@@ -35,16 +35,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":route_annotation")
-    implementation project(":route_api")
-//    annotationProcessor project(":route_compiler")
-    kapt project(":route_compiler")
 
     implementation project(':libcommon')
 
     implementation project(":feature_ui")
     implementation project(":feature_storage")
-    implementation project(":feature_sensor")
+//    implementation project(":feature_sensor")
 
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.viewpager2

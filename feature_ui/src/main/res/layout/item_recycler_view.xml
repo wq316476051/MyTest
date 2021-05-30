@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:contentPaddingLeft="@dimen/default_margin_start"
     app:contentPaddingRight="@dimen/default_margin_start"
-    tools:context=".view.recycler_view.RecyclerViewActivity">
+    tools:context=".view.recyclerview.RecyclerViewActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -3,7 +3,6 @@ package com.wang.mytest.feature.storage.database.upgrade
 import android.database.sqlite.SQLiteDatabase
 import com.wang.mytest.feature.storage.database.table.Audio
 import com.wang.mytest.feature.storage.database.table.Label
-import com.wang.mytest.common.logd
 import org.jetbrains.anko.db.*
 
 /**
@@ -17,13 +16,11 @@ open class UpgradeFrom1To2 : UpgradeFrom0To1() {
 
     open override fun onCreate(db: SQLiteDatabase) {
         super.onCreate(db)
-        logd("UpgradeFrom1To2", "onCreate: ")
         createLabelTable(db)
     }
 
     open override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         super.onUpgrade(db, oldVersion, newVersion)
-        logd("UpgradeFrom1To2", "onUpgrade: ")
         createLabelTable(db)
     }
 
@@ -37,7 +34,6 @@ open class UpgradeFrom1To2 : UpgradeFrom0To1() {
      *      ALTER TABLE table_name ALTER COLUMN column_name datatype
      */
     private fun createLabelTable(db: SQLiteDatabase) {
-        logd("UpgradeFrom1To2", "createLabelTable: ")
         db.addColumn(Audio.TABLE_NAME, Audio.SIZE to INTEGER)
         db.addColumn(Audio.TABLE_NAME, Audio.HASH_Code to INTEGER)
 

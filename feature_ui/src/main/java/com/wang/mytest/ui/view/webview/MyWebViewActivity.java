@@ -12,12 +12,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 
-import com.wang.mytest.apt.annotation.Route;
-import com.wang.mytest.R;
+;
+import com.wang.mytest.ui.R;
 
 import androidx.annotation.Nullable;
 
-@Route(path = "/activity/ui/web_view", title = "WebView")
 public class MyWebViewActivity extends Activity {
 
     private static final String TAG = "MyWebViewActivity";

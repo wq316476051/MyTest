@@ -1,35 +1,28 @@
 package com.wang.mytest;
 
-import android.annotation.SuppressLint;
+import android.animation.AnimatorInflater;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.wang.mytest.apt.annotation.RouteBean;
-import com.wang.mytest.ui.ScreenActivity;
-import com.wang.mytest.ui.layout.ViewPager2Activity;
 import com.wang.mytest.common.acitivity.ActivityFilter;
-import com.wang.mytest.common.acitivity.TestBean;
-import com.wang.mytest.lifecycle.LifecycleActivity;
+import com.wang.mytest.common.util.ActivityUtils;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -40,21 +33,7 @@ public class MainFragment extends Fragment {
         return new MainFragment();
     }
 
-    private RecyclerView mPathIndicator;
-    private RecyclerView mRecyclerView;
-    private Button mBtnTest;
-
-    private AtomicBoolean mClickable = new AtomicBoolean(true);
-
-    private LinkedList<String> mSegments = new LinkedList<>();
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mSegments.clear();
-        mSegments.add("activity");
-        ActivityFilter.init(context.getPackageManager());
-    }
+    private final AtomicBoolean mClickable = new AtomicBoolean(true);
 
     @Nullable
     @Override
@@ -77,32 +56,46 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Context context = requireContext();
-        mBtnTest = view.findViewById(R.id.btn_test);
-        mPathIndicator = view.findViewById(R.id.path_indicator);
+        Toolbar toolbar = view.findViewById(R.id.main_toolbar);
+        ViewGroup container = view.findViewById(R.id.action_container);
 
-        mRecyclerView = view.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        toolbar.setTitle("MyTest");
+        toolbar.inflateMenu(R.menu.main);
+        toolbar.setOnMenuItemClickListener(this::onMenuItemSelected);
 
-        List<TestBean> beanList = ActivityFilter.getActivities(mSegments);
-        mRecyclerView.setAdapter(new NormalAdapter2(beanList));
-
-//        mRecyclerView.setAdapter(new NormalAdapter(RouteStore.getAll()));
-
-        mBtnTest.setOnClickListener(v -> {
-            startActivity(new Intent().setClass(context, LifecycleActivity.class));
-        });
+        List<ActivityFilter.Entity> activities = ActivityFilter.getActivities();
+        for (ActivityFilter.Entity entity : activities) {
+            final TextView child = createChild(context);
+            child.setText(entity.getSummary());
+            child.setOnClickListener(v -> {
+                ComponentName componentName = new ComponentName(entity.getPackageName(), entity.getClassName());
+                Intent intent = new Intent().setComponent(componentName);
+                ActivityUtils.startActivity(context, intent);
+            });
+            container.addView(child);
+        }
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.clickable, menu);
+    @NonNull
+    private TextView createChild(@NonNull Context context) {
+        TextView view = new TextView(context);
+        view.setTextSize(24);
+        view.setGravity(Gravity.CENTER);
+        view.setBackgroundColor(Color.parseColor("#88888888"));
+        view.setPadding(24, 12, 24, 12);
+        view.setStateListAnimator(AnimatorInflater.loadStateListAnimator(context, R.animator.state_list_animator));
+
+        ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = 24;
+        params.rightMargin = 12;
+        params.topMargin = 24;
+        params.bottomMargin = 12;
+        view.setLayoutParams(params);
+        return view;
     }
 
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    private boolean onMenuItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.options_clickable: {
                 mClickable.compareAndSet(false, true);
@@ -112,94 +105,8 @@ public class MainFragment extends Fragment {
                 mClickable.compareAndSet(true, false);
                 return true;
             }
-            case R.id.options_screen_details: {
-                startActivity(new Intent(getContext(), ScreenActivity.class));
-                return true;
-            }
-            case R.id.options_viewpager2: {
-                startActivity(new Intent(getContext(), ViewPager2Activity.class));
-                return true;
-            }
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.ViewHolder> {
-        List<RouteBean> mDataList;
-
-        private NormalAdapter(List<RouteBean> dataList) {
-            mDataList = dataList;
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView tvTitle;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tv_title);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return mDataList.size();
-        }
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_1, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            final RouteBean routeBean = mDataList.get(position);
-            holder.tvTitle.setText(routeBean.title);
-            holder.itemView.setOnClickListener(view -> {
-                Intent intent = new Intent().setClassName(getContext(), routeBean.className);
-                startActivity(intent);
-            });
-        }
-    }
-
-    private class NormalAdapter2 extends RecyclerView.Adapter<NormalAdapter2.ViewHolder> {
-        List<TestBean> mDataList;
-
-        private NormalAdapter2(List<TestBean> dataList) {
-            mDataList = dataList;
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView tvTitle;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tv_title);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return mDataList.size();
-        }
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_1, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            final TestBean routeBean = mDataList.get(position);
-            holder.tvTitle.setText(routeBean.getSummary());
-            holder.itemView.setOnClickListener(view -> {
-                Intent intent = new Intent().setComponent(routeBean.getComponentName());
-                startActivity(intent);
-            });
         }
     }
 }

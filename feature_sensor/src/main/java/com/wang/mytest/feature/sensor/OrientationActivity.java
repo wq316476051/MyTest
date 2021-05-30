@@ -9,13 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.wang.mytest.apt.annotation.Route;
+;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-@Route(path = "/activity/sensor/orientation", title = "Orientation Sensor")
 public class OrientationActivity extends AppCompatActivity {
 
     private static final String TAG = "OrientationActivity";

@@ -30,10 +30,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":route_annotation")
-    implementation project(":route_api")
-    kapt project(":route_compiler")
-
     implementation project(':libcommon')
 
     implementation rootProject.ext.dependencies.appcompat
@@ -41,6 +37,7 @@ dependencies {
     implementation rootProject.ext.dependencies.cardview
     implementation rootProject.ext.dependencies.viewpager2
     implementation rootProject.ext.dependencies.material_design
+    implementation rootProject.ext.dependencies.interpolator
 
     implementation rootProject.ext.dependencies.lifecycle_viewmodel_ktx
     implementation rootProject.ext.dependencies.kotlin_stdlib_jdk8

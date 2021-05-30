@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.wang.mytest.R
-import com.wang.mytest.apt.annotation.Route
+
 
 /**
  * 启动时调用顺序：
@@ -78,7 +78,6 @@ import com.wang.mytest.apt.annotation.Route
  * LifecycleActivity: onDestroy:
  * LifecycleActivity: onDetachedFromWindow:
  */
-@Route(path = "/activity/app/lifecycle", title = "lifecycle")
 class LifecycleActivity : AppCompatActivity() {
 
     companion object {
