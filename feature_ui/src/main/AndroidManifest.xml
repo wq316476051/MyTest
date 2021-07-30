@@ -16,12 +16,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
-                android:name="mytest.meta.bane.SUMMARY"
+                android:name="mytest.meta.name.SUMMARY"
                 android:value="UI" />
         </activity>
 
         <activity android:name=".ScreenActivity"
-            android:theme="@style/AppThemeCommon.Immersive" />
+            android:theme="@style/AppThemeCommon" />
 
         <activity android:name=".style.ThemeStyleActivity"
             android:theme="@style/AppThemeCommon.Immersive" />

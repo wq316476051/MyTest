@@ -10,9 +10,9 @@ import android.view.animation.Animation
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.wang.mytest.ui.R
-import com.wang.mytest.common.util.ToastUtils
 import android.view.animation.TranslateAnimation
 import androidx.fragment.app.FragmentTransaction
+import com.wang.mytest.common.util.ToastUtils
 
 
 class AnimTwoFragment : Fragment() {
@@ -28,8 +28,9 @@ class AnimTwoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = requireActivity()
         view.findViewById<Button>(R.id.btn_anim_two).setOnClickListener {
-            ToastUtils.showShort("two")
+            ToastUtils.showShort(activity, "two")
         }
     }
 

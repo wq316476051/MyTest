@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.wang.mytest.common.hasStoragePermission
-import com.wang.mytest.common.requestStoragePermission
+import com.wang.mytest.common.util.PermissionUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,16 +19,16 @@ class FileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (hasStoragePermission()) {
+        if (PermissionUtils.hasStoragePermission(this)) {
             onStoragePermissionGranted();
         } else {
-            requestStoragePermission()
+            PermissionUtils.requestStoragePermission(this)
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1024 && hasStoragePermission()) {
+        if (requestCode == 1024 && PermissionUtils.hasStoragePermission(this)) {
             onStoragePermissionGranted();
         }
     }

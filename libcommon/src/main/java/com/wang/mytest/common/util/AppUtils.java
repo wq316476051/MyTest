@@ -3,6 +3,7 @@ package com.wang.mytest.common.util;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,10 @@ public final class AppUtils {
 
     public static PackageManager getPackageManager() {
         return getApp().getPackageManager();
+    }
+
+    public static ConnectivityManager getConnectivityManager() {
+        return getApp().getSystemService(ConnectivityManager.class);
     }
 
     public static boolean isAtLeastO() {

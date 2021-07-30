@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
                 .observe();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     private void onLocaleChanged() {
         LogUtils.debug(TAG, "onLocaleChanged: ");
     }

@@ -84,7 +84,7 @@ public final class ScreenUtils {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
     }
 
-    private static int getStatusBarHeight(@NonNull Context context) {
+    public static int getStatusBarHeight(@NonNull Context context) {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
@@ -93,7 +93,7 @@ public final class ScreenUtils {
         return 0;
     }
 
-    private static int getNavigationBarHeight(@NonNull Context context) {
+    public static int getNavigationBarHeight(@NonNull Context context) {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
         if (resourceId > 0) {

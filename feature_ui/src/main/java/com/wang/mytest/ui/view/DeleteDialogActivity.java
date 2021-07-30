@@ -31,10 +31,10 @@ public class DeleteDialogActivity extends FragmentActivity {
                     .setNegativeButton("取消", null)
                     .show();
             alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button -> {
-                ToastUtils.INSTANCE.showShort("confirm clicked");
+                ToastUtils.showShort(this, "confirm clicked");
             });
             alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(button -> {
-                ToastUtils.INSTANCE.showShort("cancel clicked");
+                ToastUtils.showShort(this,"cancel clicked");
             });
         });
     }

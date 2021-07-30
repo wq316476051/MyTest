@@ -10,10 +10,10 @@ import android.view.animation.Animation
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.wang.mytest.ui.R
-import com.wang.mytest.common.util.ToastUtils
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
+import com.wang.mytest.common.util.ToastUtils
 
 
 class AnimOneFragment : Fragment() {
@@ -43,11 +43,13 @@ class AnimOneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated: ")
+        val activity = requireActivity()
+
         mToolbar = view.findViewById(R.id.toolbar)
         mToolbar.setOnMenuItemClickListener(this::onOptionsItemSelected)
         setHasOptionsMenu(true)
         view.findViewById<Button>(R.id.btn_anim_one).setOnClickListener {
-            ToastUtils.showShort("one")
+            ToastUtils.showShort(activity, "one")
         }
     }
 

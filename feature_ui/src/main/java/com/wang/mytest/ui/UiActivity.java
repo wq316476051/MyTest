@@ -1,9 +1,11 @@
 package com.wang.mytest.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,25 +21,20 @@ public class UiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui);
 
-        findViewById(R.id.btn_print_screen_details).setOnClickListener(this::onPrintScreenDetailsClicked);
-        findViewById(R.id.btn_test_theme_style).setOnClickListener(this::onTestThemeStyleClicked);
-        findViewById(R.id.btn_test_state_list_animator).setOnClickListener(this::onTestStateListAnimatorClicked);
-        findViewById(R.id.btn_test_recycler_view).setOnClickListener(this::onTestRecyclerViewClicked);
+        registerCallback(R.id.btn_print_screen_details, ScreenActivity.class);
+        registerCallback(R.id.btn_test_theme_style, ThemeStyleActivity.class);
+        registerCallback(R.id.btn_test_state_list_animator, StateListAnimatorActivity.class);
+        registerCallback(R.id.btn_test_recycler_view, RecyclerViewActivity.class);
     }
 
-    private void onTestRecyclerViewClicked(View view) {
-        ActivityUtils.startActivity(this, new Intent(this, RecyclerViewActivity.class));
-    }
-
-    private void onPrintScreenDetailsClicked(View view) {
-        ActivityUtils.startActivity(this, new Intent(this, ScreenActivity.class));
-    }
-
-    private void onTestThemeStyleClicked(View view) {
-        ActivityUtils.startActivity(this, new Intent(this, ThemeStyleActivity.class));
-    }
-
-    private void onTestStateListAnimatorClicked(View view) {
-        ActivityUtils.startActivity(this, new Intent(this, StateListAnimatorActivity.class));
+    private void registerCallback(@IdRes int id, Class<? extends Activity> activityClass) {
+        final View view = findViewById(id);
+        if (view == null) {
+            return;
+        }
+        view.setOnClickListener(v -> {
+            Intent intent = new Intent(this, activityClass);
+            ActivityUtils.startActivity(this, intent);
+        });
     }
 }

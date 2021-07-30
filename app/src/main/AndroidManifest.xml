@@ -22,15 +22,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".test.DualFragmentActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"/>
+        <activity android:name=".CommonTestActivity"
+            android:theme="@style/AppThemeCommon.Immersive">
+            <intent-filter>
+                <action android:name="mytest.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="mytest.meta.name.SUMMARY"
+                android:value="Common" />
+        </activity>
 
-        <activity android:name=".lifecycle.LifecycleActivity" />
-        <activity android:name="com.wang.mytest.ui.view.viewpager2.ViewPager2Activity" />
-        <activity android:name=".permission.PermissionActivity" />
         <activity android:name=".network.NetworkActivity" />
-
-        <service android:name=".lifecycle.LifecycleService" />
     </application>
-
 </manifest>

@@ -96,17 +96,15 @@ public class MainFragment extends Fragment {
     }
 
     private boolean onMenuItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.options_clickable: {
-                mClickable.compareAndSet(false, true);
-                return true;
-            }
-            case R.id.options_unclickable: {
-                mClickable.compareAndSet(true, false);
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(item);
+        final int itemId = item.getItemId();
+        if (itemId == R.id.options_clickable) {
+            mClickable.compareAndSet(false, true);
+            return true;
+        } else if (itemId == R.id.options_unclickable) {
+            mClickable.compareAndSet(true, false);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }
